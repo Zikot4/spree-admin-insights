@@ -25,7 +25,7 @@ module Spree
                 'q[created_at_lt]' => params[:search][:end_date]&.tr('-', '/'),
                 utf8: '✓'
               )
-            }&q[line_items_variant_product_name_cont]=@@@@@" target="_blank">{%# o.sold_count %}</a>
+            }&q[line_items_variant_product_name_cont]=@@@@@&q[line_items_variant_sku_cont]=$$$$$" target="_blank">{%# o.sold_count %}</a>
           )
           @report_data[:deeplink][:sold_count][:template] = tag
         end

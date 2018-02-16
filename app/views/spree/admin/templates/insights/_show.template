@@ -34,8 +34,11 @@
                 {% if (o['deeplink'][o['headers'][j].value] || false) { %}
                   {%
                     var first_link = o['deeplink'][o['headers'][j].value]['template']
-                    var second_link = o['stats'][i]['product_name'];
-                    var good_link = first_link.replace('@@@@@', second_link)
+                    var name_link = o['stats'][i]['product_name'];
+                    var sku_link = o['stats'][i]['sku'];
+                    var sku = (name_link == sku_link ? '' : sku_link);
+                    var good_link = first_link.replace('@@@@@', name_link)
+                    good_link = good_link.replace('$$$$$', sku)
                   %}
                   {%# tmpl(good_link, o['stats'][i]) %}
                 {% } else { %}
