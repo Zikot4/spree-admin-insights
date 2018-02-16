@@ -22,7 +22,9 @@ module Spree
             <a href="#{
               Spree::Core::Engine.routes.url_helpers.admin_orders_path(
                 'q[created_at_gt]' => params[:search][:start_date]&.tr('-', '/'),
-                'q[created_at_lt]' => params[:search][:end_date]&.tr('-', '/'))
+                'q[created_at_lt]' => params[:search][:end_date]&.tr('-', '/'),
+                utf8: '✓'
+              )
             }&q[line_items_variant_product_name_cont]=@@@@@" target="_blank">{%# o.sold_count %}</a>
           )
           @report_data[:deeplink][:sold_count][:template] = tag
