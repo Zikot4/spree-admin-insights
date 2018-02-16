@@ -31,7 +31,16 @@
                   <span class="fa fa-chevron-down loss-indicator"></span>
                 {% } %}
               {% } else if (o['headers'][j].type == 'integer') { %}
-                {%= o['stats'][i][o['headers'][j].value] || 0 %}
+                {% if (o['deeplink'][o['headers'][j].value] || false) { %}
+                  {%
+                    var first_link = o['deeplink'][o['headers'][j].value]['template']
+                    var second_link = o['stats'][i]['product_name'];
+                    var good_link = first_link.replace('@@@@@', second_link)
+                  %}
+                  {%# tmpl(good_link, o['stats'][i]) %}
+                {% } else { %}
+                  {%= o['stats'][i][o['headers'][j].value] || 0 %}
+                {% } %}
               {% } else { %}
                 {% if (o['deeplink']['deeplinked'] && o['deeplink'][o['headers'][j].value]) { %}
                   {%# tmpl(o['deeplink'][o['headers'][j].value]['template'], o['stats'][i]) %}

@@ -16,6 +16,18 @@ module Spree
         report = ReportGenerationService.generate_report(@report_name, params.merge(@pagination_hash))
 
         @report_data = shared_data.merge(report.to_h)
+
+        if @report_data[:deeplink][:sold_count].present?
+          tag = %(
+            <a href="#{
+              Spree::Core::Engine.routes.url_helpers.admin_orders_path(
+                'q[created_at_gt]' => params[:search][:start_date]&.tr('-', '/'),
+                'q[created_at_lt]' => params[:search][:end_date]&.tr('-', '/'))
+            }&q[line_items_variant_product_name_cont]=@@@@@" target="_blank">{%# o.sold_count %}</a>
+          )
+          @report_data[:deeplink][:sold_count][:template] = tag
+        end
+
         respond_to do |format|
           format.html { render :index }
           format.json { render json: @report_data }

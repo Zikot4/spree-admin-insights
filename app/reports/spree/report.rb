@@ -110,7 +110,7 @@ module Spree
       @start_date = start_date.present? ? Date.parse(start_date) :  Date.current.beginning_of_year
       end_date = @search[:end_date]
       @end_date = (end_date.present? ? Date.parse(end_date).next_day : Date.current.end_of_year)
-      self.reporting_period = (@start_date.beginning_of_day)..(@end_date.end_of_day)
+      self.reporting_period = (@start_date.beginning_of_day)..(@end_date.beginning_of_day)
     end
 
     private def determine_report_time_scale

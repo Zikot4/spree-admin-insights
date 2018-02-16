@@ -11,7 +11,7 @@ module Spree
         "#{Spree::Core::Engine.routes.url_helpers.edit_admin_product_path('@@@')}"
         target="_blank">{%# o.product_name %}</a>
       ).sub!('@@@', '{%# o.product_slug %}')
-    }
+    }, sold_count: { template: true }
 
     class Result < Spree::Report::Result
       class Observation < Spree::Report::Observation
